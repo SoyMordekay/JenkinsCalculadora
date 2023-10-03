@@ -1,17 +1,54 @@
-// Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
-// then press Enter. You can now see whitespace characters in your code.
+import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
-        // Press Alt+Intro with your caret at the highlighted text to see how
-        // IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
 
-        // Press Mayús+F10 or click the green arrow button in the gutter to run the code.
-        for (int i = 1; i <= 5; i++) {
+        Scanner scanner = new Scanner(System.in);
+        double numero1, numero2, resultado;
+        char operador;
 
-            // Press Mayús+F9 to start debugging your code. We have set one breakpoint
-            // for you, but you can always add more by pressing Ctrl+F8.
-            System.out.println("i = " + i);
+        System.out.println("Calculadora Java");
+        numero1 = obtenerNumero(scanner);
+        operador = obtenerOperador(scanner);
+        numero2 = obtenerNumero(scanner);
+
+        resultado = calcular(numero1, operador, numero2);
+
+        if (Double.isNaN(resultado)) {
+            System.out.println("Error: No se puede dividir por cero.");
+        } else {
+            System.out.println("Resultado: " + resultado);
+        }
+
+        scanner.close();
+    }
+
+    public static double obtenerNumero(Scanner scanner) { //metodo para optener el primer numero
+        System.out.print("Ingrese el primer número: ");
+        return scanner.nextDouble();
+    }
+
+    public static char obtenerOperador(Scanner scanner) {//metodo para optener el operador
+        System.out.print("Ingrese un operador (+, -, *, /): ");
+        return scanner.next().charAt(0);
+    }
+
+    public static double calcular(double numero1, char operador, double numero2) {//metodo para optener el segundo numero
+        switch (operador) {
+            case '+':
+                return numero1 + numero2;
+            case '-':
+                return numero1 - numero2;
+            case '*':
+                return numero1 * numero2;
+            case '/':
+                if (numero2 != 0) {
+                    return numero1 / numero2;
+                } else {
+                    return Double.NaN; // Indica un error (NaN representa "Not-a-Number").
+                }
+            default:
+                System.out.println("Operador no válido.");
+                return Double.NaN;
         }
     }
 }
