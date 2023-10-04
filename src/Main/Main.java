@@ -35,20 +35,37 @@ public class Main {
     public static double calcular(double numero1, char operador, double numero2) {//metodo para optener el segundo numero
         switch (operador) {
             case '+':
-                return numero1 + numero2;
+                return suma(numero1,numero2);
             case '-':
-                return numero1 - numero2;
+                return resta(numero1,numero2);
             case '*':
-                return numero1 * numero2;
+                return multiplicacion(numero1 ,numero2);
             case '/':
-                if (numero2 != 0) {
-                    return numero1 / numero2;
-                } else {
-                    return Double.NaN; // Indica un error (NaN representa "Not-a-Number").
-                }
+                return division(numero1 ,numero2);
             default:
                 System.out.println("Operador no válido.");
                 return Double.NaN;
+        }
+    }
+
+    public static double suma(double numero1, double numero2) {
+        return numero1 + numero2;
+    }
+
+    public static double resta(double numero1, double numero2) {
+        return numero1 - numero2;
+    }
+
+    public static double multiplicacion(double numero1, double numero2) {
+        return numero1 * numero2;
+    }
+
+    public static double division(double numero1, double numero2) {
+        if (numero2 != 0) {
+            return numero1 / numero2;
+        } else {
+            System.out.println("Error: No se puede dividir por cero.");
+            return Double.NaN; // Indica un error (NaN representa "Not-a-Number").
         }
     }
 }
